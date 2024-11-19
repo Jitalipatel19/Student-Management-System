@@ -1,0 +1,96 @@
+﻿@page
+@model Student_Management_System.Pages.Students.EditModel
+@{
+}
+<body style="background-color: #C1CAD6;">
+<h2>Edit Student</h2>
+
+@if (Model.ErrorMsg.Length > 0)
+{
+    <div class='alert alert-warning alert-dissmissible fade show' role='alert'>
+        <strong>@Model.ErrorMsg</strong>
+        <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='close'></button>
+    </div>
+}
+
+<form method="POST">
+
+    <input type="hidden" name="id" value="@Model.studentInfo.id" />
+
+    <div class="row mb-3">
+        <label class="col-sm-3 col-form-label">Name</label>
+        <div class="col-sm-6">
+            <input type="text" class="form-control" name="name" value="@Model.studentInfo.name" />
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <label class="col-sm-3 col-form-label">Email</label>
+        <div class="col-sm-6">
+            <input type="email" class="form-control" name="email" value="@Model.studentInfo.email" />
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <label class="col-sm-3 col-form-control">Phone</label>
+        <div class="col-sm-6">
+            <input type="text" class="form-control" name="phone" value="@Model.studentInfo.phone" />
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <label class="col-sm-3 col-form-label">Address</label>
+        <div class="col-sm-6">
+            <input type="text" class="form-control" name="address" value="@Model.studentInfo.address" />
+        </div>
+    </div>
+
+    @if (Model.SuccessMsg.Length > 0)
+    {
+        <div class='alert alert-success alert-dismissible fade show' role='alert'>
+            <strong>@Model.SuccessMsg</strong>
+            <button type="button" class='btn-close' data-bs-dismiss='alert' aria-label='close'></button>
+        </div>
+    }
+
+    <div class="row mb-3">
+        <div class="offset-sm-3 col-sm-3 d-grid">
+            <button type="button" class="btn btn-primary" onclick="confirmSubmission()">Submit</button>
+        </div>
+    </div>
+
+    @section Scripts {
+        <script>
+            function confirmSubmission() {
+                Swal.fire({
+                    title: "Are you sure you want to submit changes?",
+                    text: "This action cannot be undone.",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#3085d6",
+                    cancelButtonColor: "#d33",
+                    confirmButtonText: "Yes, submit!",
+                    cancelButtonText: "No, cancel"
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        // Submit the form programmatically here if confirmed
+                        document.forms[0].submit(); // Assuming your form is the first one
+                    }
+                });
+            }
+        </script>
+    }
+
+    <div class="row mb-3">
+        <div class="offset-sm-3 col-sm-3 d-grid">
+            <a class="btn btn-outline-primary" href="/" role="button">Cancel</a>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="offset-sm-3 col-sm-3 d-grid">
+            </div>
+    </div>
+
+</form>
+</body>

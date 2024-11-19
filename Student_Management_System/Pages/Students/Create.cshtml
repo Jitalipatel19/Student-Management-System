@@ -1,0 +1,85 @@
+﻿@page
+@model Student_Management_System.Pages.Students.CreateModel
+@{
+}
+<body style="background-color: #E7E6F7;">
+    <h2>New Student</h2>
+    @if (Model.ErrorMsg.Length > 0)
+    {
+        <div class='alert alert-warning alert-dissmissible fade show' role='alert'>
+            <strong>@Model.ErrorMsg</strong>
+            <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='close'></button>
+        </div>
+    }
+</body>
+
+
+<form method="POST">
+
+    <div class="row mb-3">
+        <label class="col-sm-3 col-form-label">Name</label>
+        <div class="col-sm-6">
+            <input type="text" class="form-control" name="name" value="@Model.studentInfo.name" />
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <label class="col-sm-3 col-form-label">Email</label>
+        <div class="col-sm-6">
+            <input type="email" class="form-control" name="email" value="@Model.studentInfo.email" />
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <label class="col-sm-3 col-form-label">Phone</label>
+        <div class="col-sm-6">
+            <input type="text" class="form-control" name="phone" value="@Model.studentInfo.phone" />
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <label class="col-sm-3 col-form-label">Address</label>
+        <div class="col-sm-6">
+            <input type="text" class="form-control" name="address" value="@Model.studentInfo.address" />
+        </div>
+    </div>
+
+
+    @if (Model.SuccessMsg.Length > 0)
+    {
+        <div class='alert alert-success alert-dismissible fade show' role='alert'>
+            <strong>@Model.SuccessMsg</strong>
+            <button type="button" class='btn-close' data-bs-dismiss='alert' aria-label='close'></button>
+        </div>
+    }
+
+
+    <div class="row mb-3">
+        <div class="offset-sm-3 col-sm-3 d-grid">
+            <button type="button" class="btn btn-primary" onclick="confirmSubmit()">Submit</button>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        function confirmSubmit() {
+            Swal.fire({
+                title: 'Student Created Successfully!',
+ 
+                icon: "success"
+                
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    // Submit the form programmatically
+                    document.forms[0].submit();
+                }
+            });
+        }
+    </script>
+
+    <div class="row mb-3">
+        <div class="offset-sm-3 col-sm-3 d-grid">
+            <a class="btn btn-outline-primary" href="/" role="button">Cancel</a>
+        </div>
+    </div>
+</form>
